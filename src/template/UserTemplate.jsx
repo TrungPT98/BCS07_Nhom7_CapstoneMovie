@@ -6,7 +6,7 @@ import Footer from "../Components/Footer/Footer";
 const UserTemplate = () => {
   return (
     <Fragment>
-      <div>
+      <div className="flex flex-col min-h-screen justify-between">
         <Header />
         <Outlet />
         <Footer />
