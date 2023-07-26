@@ -1,0 +1,24 @@
+/* Button-based navbar for small screens */
+.navbar-button {
+    display: none;
+  }
+
+@media (max-width: 800px) {
+  .navbar-button {
+    display: block;
+  }
+
+  /* Show the navbar links in a dropdown style */
+  .navbar-button-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    top: 100%;
+    right: 0;
+    width: 100%;
+  }
+
+  .navbar-button-content.active {
+    display: block;
+  }
+}

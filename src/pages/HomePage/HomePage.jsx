@@ -1,8 +1,16 @@
 import React from 'react';
+import HomeBanner from '../../Components/HomeBanner/HomeBanner';
+import ListMovie from '../../Components/ListMovie/ListMovie';
+
 
 const HomePage = () => {
+
   return (
-    <div>HomePage</div>
+    <div>
+      <HomeBanner/>
+      {/* Danh sách phim  */}
+      <ListMovie/>
+    </div>
   )
 }
 
