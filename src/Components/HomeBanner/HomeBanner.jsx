@@ -19,7 +19,7 @@ const HomeBanner = () => {
     <Carousel>
       {banner.map((banner, index) => {
         return (
-          <div key={index} className="h-70vh">
+          <div key={index} className="h-90vh mt-16">
             <img
               className="w-full h-full object-cover"
               src={banner.hinhAnh}
