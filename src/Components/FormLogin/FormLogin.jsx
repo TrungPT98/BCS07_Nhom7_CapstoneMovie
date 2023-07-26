@@ -25,25 +25,41 @@ const FormLogin = () => {
     // values là dữ liệu từ input
     onSubmit: (values) => {
       //   console.log(values);
+
       // gửi dữ liệu lên server
       nguoiDungServ
         .dangNhap(values)
         .then((res) => {
-          // console.log(res);
-          messageApi.success("Đăng nhập thành công.");
-          // login thành công, lưu thông tin xuống local
-          luuXuongLocal("user", res.data.content);
-          // lưu thành công sẽ gửi dữ liệu lên redux
-            dispatch(setName(res.data.content))
+          console.log(res);
+          if (res.data.content.maLoaiNguoiDung === "QuanTri") {
+            messageApi.success("Đăng nhập thành công.");
+            // login thành công, lưu thông tin xuống local
+            luuXuongLocal("user", res.data.content);
+            // lưu thành công sẽ gửi dữ liệu lên redux
+            dispatch(setName(res.data.content));
 
-          //   set thời gian để thông báo message
-          setTimeout(() => {
-            // navigate('/')
-          }, 2000);
+            //   set thời gian để thông báo message
+            setTimeout(() => {
+              navigate("/admin");
+            }, 2000);
+          } else {
+            messageApi.success("Đăng nhập thành công.");
+            // login thành công, lưu thông tin xuống local
+            luuXuongLocal("user", res.data.content);
+            // lưu thành công sẽ gửi dữ liệu lên redux
+            dispatch(setName(res.data.content));
+
+            //   set thời gian để thông báo message
+            setTimeout(() => {
+              navigate("/");
+            }, 2000);
+          }
         })
         .catch((err) => {
           console.log(err);
           messageApi.error(err.response.data.content);
+          // clear input khi nhập sai tk hoặc mk
+          formik.resetForm();
         });
     },
     // dùng thư viện yup để validate
@@ -128,6 +144,8 @@ const FormLogin = () => {
                   type
                   name="taiKhoan"
                   placeholder="nhập tài khoản..."
+                  // phương thức formik.values.
+                  value={formik.values.taiKhoan}
                 />
                 {/* formik.errors */}
                 {/* check khi người dùng nhập vô rồi mới báo lỗi (dùng touched) nếu không dùng sẽ báo lỗi khi chúng ta không đụng vào input */}
@@ -152,6 +170,8 @@ const FormLogin = () => {
                   type="password"
                   name="matKhau"
                   placeholder="Nhập mật khẩu..."
+                  // phương thức formik.values.
+                  value={formik.values.matKhau}
                 />
                 {/* formik.errors */}
                 {/* check khi người dùng nhập vô rồi mới báo lỗi (dùng touched) nếu không dùng sẽ báo lỗi khi chúng ta không đụng vào input */}
@@ -174,9 +194,14 @@ const FormLogin = () => {
             </form>
             <div className="mt-12 text-sm font-display font-semibold text-gray-700 text-center">
               Bạn chưa có tài khoản ?{" "}
-              <a className="cursor-pointer text-indigo-600 hover:text-indigo-800">
+              <button
+                onClick={() => {
+                  navigate("/register");
+                }}
+                className="cursor-pointer text-indigo-600 hover:text-indigo-800"
+              >
                 Đăng ký
-              </a>
+              </button>
             </div>
           </div>
         </div>
