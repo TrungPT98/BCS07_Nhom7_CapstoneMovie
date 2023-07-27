@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       height: {
         '90vh': '90vh'
+      },
+      screens: {
+        'xsm' : '300px'
       }
     },
   },

@@ -21,7 +21,7 @@ const ListMovie = () => {
   return (
     <div className="max-w-screen-xl mx-auto py-10">
       <h2 className="text-3xl font-bold">Danh sách phim</h2>
-      <div className="grid grid-cols-4 gap-5">
+      <div className="grid md:grid-cols-4 md:gap-5 xsm:grid-cols-2 xsm:gap-2">
         {/* movie item  */}
         {movies.map((item, index) => {
           return (
@@ -29,11 +29,11 @@ const ListMovie = () => {
               <img
                 src={item.hinhAnh}
                 alt=""
-                className="h-96 w-full object-cover rounded-md"
+                className="md:h-96 w-full object-cover rounded-md xsm:h-64"
               />
               <div className="text my-3">
-                <h3 className="font-bold text-xl">
-                  <span className="text-white text-base bg-red-500 px-2 py-1 rounded-md mr-3">
+                <h3 className="font-bold text-lg xl:line-clamp-none lg:line-clamp-1 xsm:line-clamp-1">
+                  <span className="text-white text-sm bg-red-500 px-2 py-1 rounded-md mr-1">
                     C18
                   </span>
                   {item.tenPhim}

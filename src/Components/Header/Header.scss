@@ -3,7 +3,7 @@
     display: none;
   }
 
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .navbar-button {
     display: block;
   }
@@ -12,7 +12,7 @@
   .navbar-button-content {
     display: none;
     position: absolute;
-    background-color: #fff;
+    background-color: #3d3636;
     top: 100%;
     right: 0;
     width: 100%;
