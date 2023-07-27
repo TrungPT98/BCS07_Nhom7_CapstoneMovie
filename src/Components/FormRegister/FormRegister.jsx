@@ -3,15 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 // import yup
 import * as yup from "yup";
+//import ant design
 import { Input, Space, message } from "antd";
 import { nguoiDungServ } from "../../services/nguoiDungService";
 import { useNavigate } from "react-router-dom";
-// import sass
-import "./FormRegister.scss";
 
 const FormRegister = () => {
   // state button submit
-  // const [btnSubmit, setBtnSubmit] = useState(true);
+  const [btnSubmit, setBtnSubmit] = useState(true);
   const [messageApi, contextHolder] = message.useMessage();
   // useNavigate
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ const FormRegister = () => {
       maNhom: "",
       hoTen: "",
     },
-     validationSchema: yup.object({
+    validationSchema: yup.object({
       taiKhoan: yup.string().required(),
       matKhau: yup.string().required(),
       email: yup.string().email().required(),
@@ -32,22 +31,17 @@ const FormRegister = () => {
         .string()
         .matches(/^[0-9]*$/)
         .required(),
-      maNhom: yup
-        .string()
-        .matches(/^[0-9]*$/)
-        .required()
-        .max(2),
+      maNhom: yup.string().required().min(4).max(4),
       hoTen: yup
         .string()
         .required()
         .matches(/^[a-zA-Z\s\u00C0-\u024F\u1E00-\u1EFF]+$/),
     }),
     onSubmit: (values) => {
-      
       nguoiDungServ
         .dangKy(values)
         .then((res) => {
-          // console.log(res);
+          console.log(res);
           messageApi.success("Đăng ký thành công.");
           setTimeout(() => {
             navigate("/login");
@@ -55,12 +49,20 @@ const FormRegister = () => {
         })
         .catch((err) => {
           console.log(err);
-          messageApi.success("Đã có lỗi gì đó xảy ra bạn hãy thử lại.");
+          messageApi.error("Đã có lỗi gì đó xảy ra bạn hãy thử lại.");
         });
     },
   });
 
   const { handleSubmit, handleChange, errors, touched, handleBlur } = formik;
+  console.log(formik.isValid);
+  // if(formik.isValid == true) {
+  //   setBtnSubmit(false)
+  // }
+  // enabled btnSubmit
+  useEffect(() => {
+    setBtnSubmit(!formik.isValid);
+  }, [formik.isValid]);
   return (
     <>
       {contextHolder}
@@ -160,7 +162,7 @@ const FormRegister = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 id="maNhom"
-                placeholder="02"
+                placeholder="GP02"
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 status={errors.maNhom && touched.maNhom ? "error" : ""}
               />
@@ -188,9 +190,11 @@ const FormRegister = () => {
         <div className="flex items-start"></div>
         <button
           type="submit"
-          className='w-full text-white bg-sky-500  font-medium rounded-lg text-sm px-5 py-3 text-center ease-linear duration-200
-           hover:bg-sky-700'
-          
+          disabled={btnSubmit}
+          className={`w-full text-white bg-sky-500  font-medium rounded-lg text-sm px-5 py-3        text-center ease-linear duration-200 ${
+            btnSubmit ? "disabled:opacity-75" : "hover:bg-sky-700"
+          }
+           `}
         >
           Đăng ký
         </button>
