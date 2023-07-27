@@ -5,6 +5,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import AdminTemplate from "./template/AdminTemplate";
 import UserManagement from "./pages/UserManagement/UserManagement";
+import MovieManagment from "./pages/MoviesManagment/MoviesManagment";
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,8 @@ function App() {
         </Route>
         <Route path="/admin" element={<AdminTemplate/>}>
           <Route path="user" element={<UserManagement/>}/>
+          <Route path="movies" element={<MovieManagment/>}/>
+          <Route path="showtime" />
         </Route>
         
       </Routes>

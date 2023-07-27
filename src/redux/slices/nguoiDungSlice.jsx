@@ -3,10 +3,13 @@ import { layDuLieuLocal } from "../../utils/localStore";
 import { nguoiDungServ } from "../../services/nguoiDungService";
 
 // createAsynThunk xử lý bất đồng bộ
-export const getAllUserThunk = createAsyncThunk("nguoiDung/getAllUser", async () => {
-  const res = await nguoiDungServ.getAllUser();
-  return res.data.content;
-});
+export const getAllUserThunk = createAsyncThunk(
+  "nguoiDung/getAllUser",
+  async () => {
+    const res = await nguoiDungServ.getAllUser();
+    return res.data.content;
+  }
+);
 
 const initialState = {
   name: layDuLieuLocal("user"),
@@ -30,7 +33,7 @@ export const nguoiDungSlice = createSlice({
     builder.addCase(getAllUserThunk.fulfilled, (state, action) => {
       // console.log(action);
       // console.log(state);
-      state.users = action.payload
+      state.users = action.payload;
     });
   },
 });

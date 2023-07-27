@@ -6,19 +6,19 @@ import { nguoiDungServ } from "../../services/nguoiDungService";
 import { getAllUserThunk } from "../../redux/slices/nguoiDungSlice";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 const { confirm } = Modal;
-const showConfirm = () => {
-  confirm({
-    title: "Do you Want to delete these items?",
-    icon: <ExclamationCircleFilled />,
-    content: "Some descriptions",
-    onOk() {
-      console.log("OK");
-    },
-    onCancel() {
-      console.log("Cancel");
-    },
-  });
-};
+// const showConfirm = () => {
+//   confirm({
+//     title: "Do you Want to delete these items?",
+//     icon: <ExclamationCircleFilled />,
+//     content: "Some descriptions",
+//     onOk() {
+//       console.log("OK");
+//     },
+//     onCancel() {
+//       console.log("Cancel");
+//     },
+//   });
+// };
 const TableUser = () => {
   const dispatch = useDispatch();
   // lấy dữ liệu từ store
@@ -127,7 +127,12 @@ const TableUser = () => {
     };
   });
 
-  return <Table columns={columns} dataSource={newUser} />;
+  return (
+    <div className="container">
+      <h3 className="mb-8 text-3xl">Quản lý người dùng</h3>
+      <Table columns={columns} dataSource={newUser} />
+    </div>
+  );
 };
 
 export default TableUser;

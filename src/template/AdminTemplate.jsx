@@ -32,7 +32,7 @@ const AdminTemplate = () => {
             {
               key: "2",
               icon: <VideoCameraOutlined />,
-              label: <NavLink to="/admin/fimls">Films</NavLink>,
+              label: <NavLink to="/admin/Movies">Moives</NavLink>,
             },
             {
               key: "3",
