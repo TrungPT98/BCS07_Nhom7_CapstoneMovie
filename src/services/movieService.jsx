@@ -5,7 +5,7 @@ export const movieServ = {
     return https.get("/api/QuanLyPhim/LayDanhSachBanner");
   },
   getAllMovie: () => {
-    return https.get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP09");
+    return https.get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP07");
   },
   addNewMovie: (formData) => {
     return https.post("/api/QuanLyPhim/ThemPhimUploadHinh", formData);
@@ -15,5 +15,8 @@ export const movieServ = {
   },
   updateMovie: (formData) => {
     return https.post(`/api/QuanLyPhim/CapNhatPhimUpload`,formData)
+  },
+  deleteMovie: (data) =>{
+    return https.delete(`/api/QuanLyPhim/XoaPhim?MaPhim=${data}`)
   }
 };
