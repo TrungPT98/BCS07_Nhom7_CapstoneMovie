@@ -27,18 +27,22 @@ const AdminTemplate = () => {
             {
               key: "1",
               icon: <UserOutlined />,
-              label: <NavLink to="/admin/user">User</NavLink>,
+              label: <NavLink to="/admin/user">
+                User
+              </NavLink>,
+              
             },
             {
               key: "2",
               icon: <VideoCameraOutlined />,
-              label: <NavLink to="/admin/Movies">Moives</NavLink>,
+              label: <NavLink to="/admin/movies">Moives</NavLink>
             },
             {
               key: "3",
               icon: <UploadOutlined />,
               label: <NavLink to="/admin/showtime">Showtime</NavLink>,
             },
+              
           ]}
         />
       </Sider>

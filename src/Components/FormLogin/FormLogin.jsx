@@ -24,7 +24,7 @@ const FormLogin = () => {
     },
     // values là dữ liệu từ input
     onSubmit: (values) => {
-      //   console.log(values);
+      //   console.log(vdalues);
 
       // gửi dữ liệu lên server
       nguoiDungServ
