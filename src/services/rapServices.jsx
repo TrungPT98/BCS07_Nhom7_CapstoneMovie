@@ -7,7 +7,12 @@ export const rapServ = {
   },
   getAllLichChieuHeThong: (maHeThong) => {
     return https.get(
-      `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThong}&maNhom=GP09`
+      `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThong}&maNhom=GP06`
     );
   },
+  getLichChieuPhim: (maPhim) => {
+    return https.get(
+      `https://movienew.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
+    )
+  }
 };
