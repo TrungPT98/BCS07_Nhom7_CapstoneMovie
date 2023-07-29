@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Header.scss";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [showNavLinks, setShowNavLinks] = useState(false);
@@ -8,10 +10,13 @@ const Header = () => {
     setShowNavLinks(!showNavLinks);
   };
 
+  const { name } = useSelector((state) => state.nguoiDung);
+  // console.log(name);
+
   return (
     <nav className="fixed bg-gradient-to-r from-indigo-500 via-purple-500 to-blue-500 dark:bg-gray-900 w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" className="flex items-center">
+        <NavLink to="/" className="flex items-center">
           <img
             src="https://flowbite.com/docs/images/logo.svg"
             className="h-8 mr-3"
@@ -20,21 +25,37 @@ const Header = () => {
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">
             Cyber Movie
           </span>
-        </a>
+        </NavLink>
         <div className="flex md:order-2">
-          <button
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Get started
-          </button>
-          <div className="navbar-button" onClick={toggleNavLinks}>
+          <div className="md:mt-0 xsm:mt-2">
+            {name != null ? (
+              <p className="text-white mr-2">Hello, {name.hoTen}</p>
+            ) : (
+              <>
+                <NavLink
+                  to="/login"
+                  className="text-white md:text-xl xsm:text-base hover:text-blue-900 mr-3"
+                >
+                  <i className="fa-solid fa-circle-user mr-2 md:inline xsm:hidden"></i>
+                  Đăng nhập
+                </NavLink>
+
+                <NavLink
+                  to="/register"
+                  className="text-white md:text-xl xsm:text-base hover:text-blue-900"
+                >
+                  <i className="fa-solid fa-right-to-bracket mr-2 md:inline xsm:hidden"></i>
+                  Đăng ký
+                </NavLink>
+              </>
+            )}
+          </div>
+          <div className="navbar-button ml-2" onClick={toggleNavLinks}>
             <button
               // data-collapse-toggle="navbar-sticky"
               type="button"
               className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-stone-900 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               // aria-controls="navbar-sticky"
-              
             >
               <svg
                 className="w-5 h-5"
