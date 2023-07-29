@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { nguoiDungServ } from "../../services/nguoiDungService";
 import { getAllUserThunk } from "../../redux/slices/nguoiDungSlice";
-import TableUser from "../../Components/TableUser/TableUser";
+import TableUser from "../../Components/Admin/TableUser/TableUser";
 import { Button, Drawer, Radio, Space } from "antd";
-import FormAddUser from "../../Components/FormAddUser/FormAddUser";
+import FormAddUser from "../../Components/Admin/AdminUser/FormAddUser/FormAddUser";
+import FormAddMoive from "../../Components/Admin/AdminMovies/TableMovies/FormAddMoive/FormAddMoive";
 const UserManagement = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.nguoiDung);
@@ -32,7 +33,7 @@ const UserManagement = () => {
       >
         Thêm mới
       </button>
-      <TableUser />
+      <TableUser/>
       <Drawer
         title="Thêm người dùng"
         placement={placement}
@@ -41,7 +42,7 @@ const UserManagement = () => {
         open={open}
         size="large"
       >
-        <FormAddUser />
+        <FormAddUser/>
       </Drawer>
     </div>
   );

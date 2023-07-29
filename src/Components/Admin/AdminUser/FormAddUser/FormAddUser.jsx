@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import { nguoiDungServ } from "../../services/nguoiDungService";
 // import Formik
 // import yup
 import * as yup from "yup";
+import { nguoiDungServ } from "../../../../services/nguoiDungService";
 const FormAddUser = () => {
   const formik = useFormik({
     initialValues: {
@@ -43,7 +43,7 @@ const FormAddUser = () => {
       maNhom: yup
         .string()
         .required("Vui lòng cung cấp thông tin bắt buộc trước khi tiếp tục.")
-        .min(4,"Tối đa là 4 ký tự, vd: GP03")
+        .min(4, "Tối đa là 4 ký tự, vd: GP03")
         .max(4, "Tối đa là 4 ký tự, vd: GP03"),
       hoTen: yup
         .string()
@@ -58,9 +58,9 @@ const FormAddUser = () => {
   const { handleSubmit, handleChange, errors, touched, handleBlur, values } =
     formik;
   const [btnSubmit, setBtnSubmit] = useState(true);
-  useEffect(()=>{
-    setBtnSubmit(!formik.isValid)
-  },[formik.isValid])
+  useEffect(() => {
+    setBtnSubmit(!formik.isValid);
+  }, [formik.isValid]);
   return (
     <div>
       <form
@@ -235,8 +235,8 @@ const FormAddUser = () => {
           type="submit"
           disabled={btnSubmit}
           class={`text-white bg-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center ${
-            btnSubmit ? "disabled:opacity-75" : 'hover:bg-blue-800'
-          }` }
+            btnSubmit ? "disabled:opacity-75" : "hover:bg-blue-800"
+          }`}
         >
           Thêm
         </button>

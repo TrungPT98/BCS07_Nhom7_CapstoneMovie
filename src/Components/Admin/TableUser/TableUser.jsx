@@ -2,9 +2,9 @@ import React, { useState } from "react";
 // import ant design
 import { Space, Table, Tag, Button, Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { nguoiDungServ } from "../../services/nguoiDungService";
-import { getAllUserThunk } from "../../redux/slices/nguoiDungSlice";
 import { ExclamationCircleFilled } from "@ant-design/icons";
+import { nguoiDungServ } from "../../../services/nguoiDungService";
+import { getAllUserThunk } from "../../../redux/slices/nguoiDungSlice";
 const { confirm } = Modal;
 // const showConfirm = () => {
 //   confirm({
