@@ -1,16 +1,29 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Table, Input, Space } from "antd";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { renderTableMovies } from "../../../../redux/slices/movieSlice";
 import { movieServ } from "../../../../services/movieService";
 import { NavLink } from "react-router-dom";
-import { deleteMovieAction, getAllMovieAction } from "../../../../redux/actions/QuanLyMovies";
-// input search
-const { Search } = Input;
-const onSearch = (value) => console.log(value);
+import {
+  deleteMovieAction,
+  getAllMovieAction,
+} from "../../../../redux/actions/QuanLyMovies";
+
 const TableMovies = () => {
-  const [ListMovie, setListMovies] = useState([]);
   const dispatch = useDispatch();
+  // input search
+  const { Search } = Input;
+  const onSearch = (value) => {
+    console.log(value);
+    // gọi ai getAllMovie
+    dispatch(getAllMovieAction(value));
+    
+  };
+  
+  const [ListMovie, setListMovies] = useState([]);
+  const { movies } = useSelector((state) => state.movies);
+  console.log(movies);
+  console.log(ListMovie)
   useEffect(() => {
     movieServ
       .getAllMovie()
@@ -24,6 +37,17 @@ const TableMovies = () => {
         console.log(err);
       });
   }, []);
+  const getNewListMovie = () => {
+    movieServ
+      .getAllMovie()
+      .then((res) => {
+        setListMovies(res.data.content);
+        dispatch(renderTableMovies(res.data.content));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const columns = [
     {
       title: "Mã phim",
@@ -78,7 +102,7 @@ const TableMovies = () => {
           <Fragment>
             <button
               key={1}
-              onClick={() => {
+              onClick={async () => {
                 // muốn xoá k??
                 if (
                   window.confirm(
@@ -86,8 +110,8 @@ const TableMovies = () => {
                   )
                 ) {
                   //  gọi action xoá
-                  dispatch(deleteMovieAction(record.maPhim))
-                  // dispatch(getAllMovieAction())
+                  await dispatch(deleteMovieAction(record.maPhim));
+                  getNewListMovie();
                 }
               }}
               className="py-2 px-5 mx-4 bg-red-600 text-white rounded-lg hover:bg-red-400 duration-300  hover:text-white"
@@ -106,7 +130,7 @@ const TableMovies = () => {
       },
     },
   ];
-  const data = ListMovie;
+  const data = movies;
   // console.log(data)
   const onChange = (pagination, filters, sorter, extra) => {
     console.log("params", pagination, filters, sorter, extra);
