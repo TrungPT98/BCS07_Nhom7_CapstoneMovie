@@ -8,6 +8,7 @@ import UserManagement from "./pages/UserManagement/UserManagement";
 import MovieManagment from "./pages/MoviesManagment/MoviesManagment";
 import EditMovie from "./Components/Admin/AdminMovies/EditMovie/EditMovie";
 import ShowTimes from "./Components/Admin/AdminMovies/ShowTimes/ShowTimes";
+import EditUser from "./Components/Admin/AdminUser/EditUser/EditUser";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" element={<UserManagement />} />
+          <Route path="edit/:taiKhoan" element={<EditUser/>}/>
           <Route path="movies" element={<MovieManagment />}/>
           <Route path="showtime/:id" element={<ShowTimes/>}/>
           <Route path="edit/:id" element={<EditMovie/>} />

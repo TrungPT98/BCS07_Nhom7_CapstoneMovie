@@ -14,6 +14,7 @@ export const getAllUserThunk = createAsyncThunk(
 const initialState = {
   name: layDuLieuLocal("user"),
   users: [],
+  infoUser: {},
 };
 // setup reduxtoolkit
 export const nguoiDungSlice = createSlice({
@@ -28,6 +29,9 @@ export const nguoiDungSlice = createSlice({
         state.name = action.payload;
       }
     },
+    getInfoUser: (state,action) => {
+      state.infoUser = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(getAllUserThunk.fulfilled, (state, action) => {
@@ -39,7 +43,7 @@ export const nguoiDungSlice = createSlice({
 });
 
 // sử dụng phương thức trong {} dưới component
-export const { setName } = nguoiDungSlice.actions;
+export const { setName, getInfoUser } = nguoiDungSlice.actions;
 
 // import vào store redux
 export default nguoiDungSlice.reducer;

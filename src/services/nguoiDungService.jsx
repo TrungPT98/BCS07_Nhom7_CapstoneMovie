@@ -16,4 +16,10 @@ export const nguoiDungServ = {
   addUser: (data) => {
     return https.post("/api/QuanLyNguoiDung/ThemNguoiDung",data);
   },
+  getInfoUser: (taiKhoan) => {
+    return https.post(`/api/QuanLyNguoiDung/LayThongTinNguoiDung?taiKhoan=${taiKhoan}`)
+  },
+  updateInfoUser: (formData)=>{
+    return https.post(`/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung`, formData)
+  }
 };

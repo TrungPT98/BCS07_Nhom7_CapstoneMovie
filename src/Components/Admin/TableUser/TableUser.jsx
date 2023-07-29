@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { nguoiDungServ } from "../../../services/nguoiDungService";
 import { getAllUserThunk } from "../../../redux/slices/nguoiDungSlice";
+import { NavLink } from "react-router-dom";
 const { confirm } = Modal;
 // const showConfirm = () => {
 //   confirm({
@@ -70,7 +71,7 @@ const TableUser = () => {
     {
       title: "Action",
       key: "action",
-      render: (_, record) => (
+      render: (text, record,index) => (
         <Space size="middle">
           <button
             onClick={() => {
@@ -90,9 +91,9 @@ const TableUser = () => {
             Xoá
           </button>
 
-          <button className="py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-400 duration-300">
+          <NavLink key={2} to={`/admin/edit/${record.taiKhoan}`}   className="py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-400 duration-300 hover:text-white">
             Sửa
-          </button>
+          </NavLink>
         </Space>
       ),
     },
