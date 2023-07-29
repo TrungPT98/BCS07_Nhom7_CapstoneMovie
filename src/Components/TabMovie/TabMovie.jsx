@@ -21,7 +21,13 @@ const TabMovie = () => {
   const renderItemTab = () => {
     return heThongRap.map((item, index) => {
       return {
-        label: <img src={item.logo} className="md:w-11 md:h-11 xsm:w-8 xsm:h-w-8" alt="" />,
+        label: (
+          <img
+            src={item.logo}
+            className="md:w-11 md:h-11 xsm:w-8 xsm:h-w-8"
+            alt=""
+          />
+        ),
         key: index,
         children: <TabMovieItem maHeThongRap={item.maHeThongRap} />,
       };

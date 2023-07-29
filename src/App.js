@@ -17,12 +17,12 @@ function App() {
           <Route path="/login"  element={<Login/>}/>
           <Route path="/register"  element={<Register/>}/>
         </Route>
-        <Route path="/admin" element={<AdminTemplate/>}>
-          <Route path="user" element={<UserManagement/>}/>
-          <Route path="movies" element={<MovieManagment/>}/>
+        <Route path="/admin" element={<AdminTemplate />}>
+          <Route path="user" element={<UserManagement />} />
+          <Route path="movies" element={<MovieManagment />}/>
           <Route path="showtime" />
+          <Route path="edit/:id" element={<EditMovie/>} />
         </Route>
-        
       </Routes>
     </BrowserRouter>
   );
