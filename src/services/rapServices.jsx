@@ -7,7 +7,7 @@ export const rapServ = {
   },
   getAllLichChieuHeThong: (maHeThong) => {
     return https.get(
-      `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThong}&maNhom=GP06`
+      `/api/QuanLyRap/LayThongTinLichChieuHeThongRap?maHeThongRap=${maHeThong}&maNhom=GP10`
     );
   },
   getLichChieuPhim: (maPhim) => {
