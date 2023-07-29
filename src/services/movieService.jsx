@@ -4,8 +4,14 @@ export const movieServ = {
   getAllBanner: () => {
     return https.get("/api/QuanLyPhim/LayDanhSachBanner");
   },
-  getAllMovie: () => {
-    return https.get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP07");
+  getAllMovie: (tenPhim = '') => {
+    if(tenPhim != '') {
+      // tên phim != '' sẽ goi api này
+      return https.get(`https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP10&tenPhim=${tenPhim}`)
+    }else{
+      // tên phim = '' sẽ goi api này
+      return https.get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP10");
+    }
   },
   addNewMovie: (formData) => {
     return https.post("/api/QuanLyPhim/ThemPhimUploadHinh", formData);

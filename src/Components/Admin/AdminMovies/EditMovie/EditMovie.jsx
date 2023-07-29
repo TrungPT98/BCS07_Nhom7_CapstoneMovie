@@ -8,9 +8,11 @@ import {
   getInfoMovieAction,
   updateMovieAction,
 } from "../../../../redux/actions/QuanLyMovies";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams, useHistory } from "react-router-dom";
 
 const EditMovie = () => {
+  // useNavigate
+
   // useDispatch
   const dispatch = useDispatch();
   //   phương thức lấy id bằng useParams()
