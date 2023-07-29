@@ -7,6 +7,7 @@ import AdminTemplate from "./template/AdminTemplate";
 import UserManagement from "./pages/UserManagement/UserManagement";
 import MovieManagment from "./pages/MoviesManagment/MoviesManagment";
 import EditMovie from "./Components/Admin/AdminMovies/EditMovie/EditMovie";
+import ShowTimes from "./Components/Admin/AdminMovies/ShowTimes/ShowTimes";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" element={<UserManagement />} />
           <Route path="movies" element={<MovieManagment />}/>
-          <Route path="showtime" />
+          <Route path="showtime/:id" element={<ShowTimes/>}/>
           <Route path="edit/:id" element={<EditMovie/>} />
         </Route>
       </Routes>
