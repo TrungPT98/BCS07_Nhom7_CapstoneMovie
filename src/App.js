@@ -7,6 +7,7 @@ import AdminTemplate from "./template/AdminTemplate";
 import UserManagement from "./pages/UserManagement/UserManagement";
 import MovieManagment from "./pages/MoviesManagment/MoviesManagment";
 import MovieDetail from "./pages/MovieDetail/MovieDetail";
+import EditMovie from "./Components/Admin/AdminMovies/EditMovie/EditMovie";
 function App() {
   return (
     <BrowserRouter>
