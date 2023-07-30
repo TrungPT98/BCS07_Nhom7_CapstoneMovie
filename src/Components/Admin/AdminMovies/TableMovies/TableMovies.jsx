@@ -114,16 +114,23 @@ const TableMovies = () => {
                   getNewListMovie();
                 }
               }}
-              className="py-2 px-5 mx-4 bg-red-600 text-white rounded-lg hover:bg-red-400 duration-300  hover:text-white"
+              className="text-2xl text-red-600 rounded-lg hover:text-red-300   duration-300  "
             >
-              Xoá
+              <i class="fa-solid fa-trash"></i>
             </button>
             <NavLink
               to={`/admin/edit/${record.maPhim}`}
               key={2}
-              className="py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-400 hover:text-white duration-300"
+              className="text-2xl mx-4  text-yellow-500 rounded-lg hover:text-yellow-300 duration-300"
             >
-              Sửa
+              <i class="fa-solid fa-pen-to-square"></i>
+            </NavLink>
+            <NavLink
+              to={`/admin/showtime/${record.maPhim}`}
+              key={2}
+              className="text-2xl hover:text-green-300   text-green-600 rounded-lg  duration-300"
+            >
+             <i class="fa-solid fa-calendar"></i>
             </NavLink>
           </Fragment>
         );

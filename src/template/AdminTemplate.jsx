@@ -40,7 +40,7 @@ const AdminTemplate = () => {
             {
               key: "3",
               icon: <UploadOutlined />,
-              label: <NavLink to="/admin/showtime">Showtime</NavLink>,
+              label: <NavLink to="">Showtime</NavLink>,
             },
               
           ]}

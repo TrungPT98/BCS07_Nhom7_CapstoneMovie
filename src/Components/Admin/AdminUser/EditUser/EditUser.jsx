@@ -4,27 +4,36 @@ import { useFormik } from "formik";
 // import yup
 import * as yup from "yup";
 import { nguoiDungServ } from "../../../../services/nguoiDungService";
-const FormAddUser = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getInfoUserAction, updateInfoUserAction } from "../../../../redux/actions/QuanLyUser";
+const EditUser = () => {
+
+    const dispatch = useDispatch()
+    const {taiKhoan} = useParams()
+    useEffect(()=>{
+        if(taiKhoan){
+            dispatch(getInfoUserAction(taiKhoan))
+        }
+    },[])
+    const {infoUser} = useSelector((state)=> state.nguoiDung)
+    console.log(infoUser)
   const formik = useFormik({
+    enableReinitialize: true,
     initialValues: {
-      taiKhoan: "",
-      matKhau: "",
-      email: "",
-      soDt: "",
-      maNhom: "",
-      maLoaiNguoiDung: "",
-      hoTen: "",
+      taiKhoan: infoUser.taiKhoan,
+      matKhau: infoUser?.matKhau,
+      email: infoUser?.email,
+      soDT: infoUser.soDT,
+      maNhom: infoUser?.maNhom,
+      maLoaiNguoiDung: infoUser?.maLoaiNguoiDung,
+      hoTen: infoUser?.hoTen,
     },
     onSubmit: (values) => {
-      nguoiDungServ
-        .addUser(values)
-        .then((res) => {
-          console.log(res);
-          alert('thêm ok')
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    //   console.log(values)
+    
+        dispatch(updateInfoUserAction(values))
+
     },
     validationSchema: yup.object({
       taiKhoan: yup
@@ -37,7 +46,7 @@ const FormAddUser = () => {
         .string()
         .email("Vui lòng kiểm tra lại định dạng email")
         .required("Vui lòng cung cấp thông tin bắt buộc trước khi tiếp tục."),
-      soDt: yup
+      soDT: yup
         .string()
         .matches(/^[0-9]*$/, "Vui lòng không nhập chữ")
         .required("Vui lòng cung cấp thông tin bắt buộc trước khi tiếp tục."),
@@ -143,22 +152,22 @@ const FormAddUser = () => {
           <div class="relative z-0 w-full mb-6 group">
             <input
               type=""
-              name="soDt"
-              id="soDt"
+              name="soDT"
+              id="soDT"
               class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               onChange={handleChange}
-              value={values.soDt}
               onBlur={handleBlur}
+              value={values.soDT}
             />
             <label
-              for="soDt"
+              for="soDT"
               class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Số điện thoại
             </label>
-            {errors.soDt && touched.soDt ? (
-              <p className="text-red-700">{errors.soDt}</p>
+            {errors.soDT && touched.soDT ? (
+              <p className="text-red-700">{errors.soDT}</p>
             ) : (
               ""
             )}
@@ -197,7 +206,7 @@ const FormAddUser = () => {
               id="countries"
               class=" text-gray-400 text-sm py-2.5   block w-full border-0 border-b-2 border-black transparent peer"
             >
-              <option value="KhachHang">
+              <option selected value="KhachHang">
                 Khách hàng
               </option>
               <option value="QuanTri">Quản trị</option>
@@ -239,11 +248,11 @@ const FormAddUser = () => {
             btnSubmit ? "disabled:opacity-75" : "hover:bg-blue-800"
           }`}
         >
-          Thêm
+          Cập nhật
         </button>
       </form>
     </div>
   );
 };
 
-export default FormAddUser;
+export default EditUser;
