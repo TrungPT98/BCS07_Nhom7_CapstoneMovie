@@ -10,7 +10,7 @@ import {
 
 const ListMovie = () => {
   const [movies, setMovies] = useState([]);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
   useEffect(() => {
     dispatch(set_loading_started());
     movieServ
