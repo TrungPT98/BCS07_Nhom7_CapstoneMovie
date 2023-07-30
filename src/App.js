@@ -23,7 +23,7 @@ function App() {
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" element={<UserManagement />} />
-          <Route path="edit/:taiKhoan" element={<EditUser/>}/>
+          <Route path="update/:taiKhoan" element={<EditUser/>}/>
           <Route path="movies" element={<MovieManagment />}/>
           <Route path="showtime/:id" element={<ShowTimes/>}/>
           <Route path="edit/:id" element={<EditMovie/>} />
