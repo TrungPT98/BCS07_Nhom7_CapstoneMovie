@@ -49,6 +49,7 @@ const FormAddMoive = () => {
       }
       //   gửi dữ liệu api
       dispatch(addNewMovieAction(formData));
+      formik.resetForm()
     },
     validationSchema: yup.object({
       tenPhim: yup
