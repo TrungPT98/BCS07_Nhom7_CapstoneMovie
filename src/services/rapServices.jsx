@@ -20,5 +20,13 @@ export const rapServ = {
     return https.get(
       `https://movienew.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
     );
-  }
+  },
+  getSeats: (bookingId) => {
+    return https.get(
+      `/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${bookingId}`
+    )
+  },
+  addDatVe: (data) => {
+    return https.post("/api/QuanLyDatVe/DatVe",data);
+  },
 };

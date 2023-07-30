@@ -10,6 +10,7 @@ import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import EditMovie from "./Components/Admin/AdminMovies/EditMovie/EditMovie";
 import ShowTimes from "./Components/Admin/AdminMovies/ShowTimes/ShowTimes";
 import EditUser from "./Components/Admin/AdminUser/EditUser/EditUser";
+import Booking from "./pages/Booking/Booking";
 
 function App() {
   return (
@@ -17,16 +18,17 @@ function App() {
       <Routes>
         <Route path="/" element={<UserTemplate />}>
           <Route index element={<HomePage />} />
-          <Route path="/detail/:id" element={<MovieDetail/>}/>
-          <Route path="/login"  element={<Login/>}/>
-          <Route path="/register"  element={<Register/>}/>
+          <Route path="/detail/:id" element={<MovieDetail />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/booking/:bookingId" element={<Booking />} />
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" element={<UserManagement />} />
-          <Route path="edit/:taiKhoan" element={<EditUser/>}/>
-          <Route path="movies" element={<MovieManagment />}/>
-          <Route path="showtime/:id" element={<ShowTimes/>}/>
-          <Route path="edit/:id" element={<EditMovie/>} />
+          <Route path="edit/:taiKhoan" element={<EditUser />} />
+          <Route path="movies" element={<MovieManagment />} />
+          <Route path="showtime/:id" element={<ShowTimes />} />
+          <Route path="edit/:id" element={<EditMovie />} />
         </Route>
       </Routes>
     </BrowserRouter>
