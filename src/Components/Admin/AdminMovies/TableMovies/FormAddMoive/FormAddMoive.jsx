@@ -26,6 +26,7 @@ const FormAddMoive = () => {
   };
   const formik = useFormik({
     initialValues: {
+      maNhom: 'GP10',
       tenPhim: "",
       trailer: "",
       moTa: "",
