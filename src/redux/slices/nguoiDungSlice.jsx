@@ -24,7 +24,7 @@ export const nguoiDungSlice = createSlice({
     // tạo 1 phương thức xử lý state bên trên store redux
     setName: (state, action) => {
       //check name có dữ liệu hay không
-      if (state.name == "") {
+      if (state.name == null) {
         // useDispatch
         state.name = action.payload;
       }

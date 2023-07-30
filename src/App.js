@@ -6,6 +6,7 @@ import Register from "./pages/Register/Register";
 import AdminTemplate from "./template/AdminTemplate";
 import UserManagement from "./pages/UserManagement/UserManagement";
 import MovieManagment from "./pages/MoviesManagment/MoviesManagment";
+import MovieDetail from "./pages/MovieDetail/MovieDetail";
 import EditMovie from "./Components/Admin/AdminMovies/EditMovie/EditMovie";
 import ShowTimes from "./Components/Admin/AdminMovies/ShowTimes/ShowTimes";
 import EditUser from "./Components/Admin/AdminUser/EditUser/EditUser";
@@ -16,8 +17,9 @@ function App() {
       <Routes>
         <Route path="/" element={<UserTemplate />}>
           <Route index element={<HomePage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/detail/:id" element={<MovieDetail/>}/>
+          <Route path="/login"  element={<Login/>}/>
+          <Route path="/register"  element={<Register/>}/>
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" element={<UserManagement />} />

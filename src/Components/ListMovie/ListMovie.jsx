@@ -19,8 +19,9 @@ const ListMovie = () => {
   });
 
   return (
+    <div className="bg-gradient-to-r from-cyan-500 to-blue-800">
     <div className="max-w-screen-xl mx-auto py-10">
-      <h2 className="text-3xl font-bold">Danh sách phim</h2>
+      <h2 className="text-3xl text-white font-bold">Danh sách phim</h2>
       <div className="grid md:grid-cols-4 md:gap-5 xsm:grid-cols-2 xsm:gap-2">
         {/* movie item  */}
         {movies.map((item, index) => {
@@ -31,7 +32,7 @@ const ListMovie = () => {
                 alt=""
                 className="md:h-96 w-full object-cover rounded-md xsm:h-64"
               />
-              <div className="text my-3">
+              <div className="text-white my-3">
                 <h3 className="font-bold text-lg xl:line-clamp-none lg:line-clamp-1 xsm:line-clamp-1">
                   <span className="text-white text-sm bg-red-500 px-2 py-1 rounded-md mr-1">
                     C18
@@ -52,6 +53,8 @@ const ListMovie = () => {
           );
         })}
       </div>
+    </div>
+
     </div>
   );
 };
