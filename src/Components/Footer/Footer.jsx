@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -6,7 +7,7 @@ const Footer = () => {
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="https://flowbite.com/" className="flex items-center">
+            <NavLink to='/' className="flex items-center">
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="h-8 mr-3"
@@ -15,7 +16,7 @@ const Footer = () => {
               <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">
                 Cyber Movie
               </span>
-            </a>
+            </NavLink>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
@@ -45,7 +46,7 @@ const Footer = () => {
               <ul className="text-cyan-800 dark:text-gray-400 font-medium">
                 <li className="mb-4">
                   <a
-                    href="https://github.com/themesberg/flowbite"
+                    href="#"
                     className="hover:underline "
                   >
                     Github
@@ -53,7 +54,7 @@ const Footer = () => {
                 </li>
                 <li>
                   <a
-                    href="https://discord.gg/4eeurUVvTy"
+                    href="#"
                     className="hover:underline"
                   >
                     Discord
@@ -84,9 +85,9 @@ const Footer = () => {
         <div className="sm:flex sm:items-center sm:justify-between">
           <span className="text-sm text-cyan-800 sm:text-center dark:text-gray-400">
             © 2023{" "}
-            <a href="https://flowbite.com/" className="hover:underline">
-              Flowbite™
-            </a>
+            <NavLink to='/' className="hover:underline">
+              CyberMovie™
+            </NavLink>
             . All Rights Reserved.
           </span>
           <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">

@@ -34,8 +34,11 @@ const TabMovie = () => {
     });
   };
   return (
-    <div className="max-w-screen-xl mx-auto my-5 border-2 p-2">
-      <Tabs tabPosition="left" items={renderItemTab()} />
+    <div className="bg-gradient-to-r from-cyan-500 to-blue-800 py-10">
+    <div className="max-w-screen-xl mx-auto">
+      <Tabs tabPosition="left" items={renderItemTab()} className="bg-white"/>
+    </div>
+
     </div>
   );
 };
