@@ -26,6 +26,7 @@ const FormAddMoive = () => {
   };
   const formik = useFormik({
     initialValues: {
+      maNhom: 'GP10',
       tenPhim: "",
       trailer: "",
       moTa: "",
@@ -49,6 +50,7 @@ const FormAddMoive = () => {
       }
       //   gửi dữ liệu api
       dispatch(addNewMovieAction(formData));
+      formik.resetForm()
     },
     validationSchema: yup.object({
       tenPhim: yup

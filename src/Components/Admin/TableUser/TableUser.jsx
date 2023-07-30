@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import ant design
-import { Space, Table, Tag, Button, Modal } from "antd";
+import { Space, Table, Tag, Button, Modal, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { nguoiDungServ } from "../../../services/nguoiDungService";
@@ -21,6 +21,22 @@ const { confirm } = Modal;
 //   });
 // };
 const TableUser = () => {
+  // message antdesign
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: 'success',
+      content: 'This is a success message',
+    });
+  };
+  const error = () => {
+    messageApi.open({
+      type: 'error',
+      content: 'This is an error message',
+    });
+  };  
+
+
   const dispatch = useDispatch();
   // lấy dữ liệu từ store
   const { users } = useSelector((state) => state.nguoiDung);
@@ -78,12 +94,13 @@ const TableUser = () => {
               nguoiDungServ
                 .deleteUser(record.taiKhoan)
                 .then((res) => {
-                  alert('OK');
-                  console.log(res)
+                  // console.log(res)
+                  success()
                   dispatch(getAllUserThunk())
                 })
                 .catch((err) => {
-                  console.log(err);
+                  // console.log(err);
+                  error()
                 });
             }}
             className="py-2 px-5 bg-red-600 text-white rounded-lg hover:bg-red-400 duration-300"
@@ -129,10 +146,13 @@ const TableUser = () => {
   });
 
   return (
+    <>
+    {contextHolder}
     <div className="container">
       <h3 className="mb-8 text-3xl">Quản lý người dùng</h3>
       <Table columns={columns} dataSource={newUser} />
     </div>
+    </>
   );
 };
 
