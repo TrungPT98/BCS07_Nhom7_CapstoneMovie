@@ -2,21 +2,28 @@ import React, { useEffect, useState } from "react";
 import { movieServ } from "../../services/movieService";
 import { Button } from "antd";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import {
+  set_loading_ended,
+  set_loading_started,
+} from '../../redux/slices/loadingSlice';
 
 const ListMovie = () => {
   const [movies, setMovies] = useState([]);
-
+  const dispatch = useDispatch();  
   useEffect(() => {
+    dispatch(set_loading_started());
     movieServ
       .getAllMovie()
-      .then((res) => {
-        // console.log(res);
-        setMovies(res.data.content);
+      .then((result) => {
+        setMovies(result.data.content);
+        dispatch(set_loading_ended());
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
+        dispatch(set_loading_ended());
       });
-  });
+  }, []);
 
   return (
     <div className="bg-gradient-to-r from-cyan-500 to-blue-800">
