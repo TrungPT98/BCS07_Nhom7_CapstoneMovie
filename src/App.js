@@ -11,6 +11,7 @@ import EditMovie from "./Components/Admin/AdminMovies/EditMovie/EditMovie";
 import ShowTimes from "./Components/Admin/AdminMovies/ShowTimes/ShowTimes";
 import EditUser from "./Components/Admin/AdminUser/EditUser/EditUser";
 import Booking from "./pages/Booking/Booking";
+import Page404 from "./pages/Page404/Page404";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="showtime/:id" element={<ShowTimes />} />
           <Route path="edit/:id" element={<EditMovie />} />
         </Route>
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   );
