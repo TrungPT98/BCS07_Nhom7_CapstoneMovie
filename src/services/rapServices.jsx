@@ -13,7 +13,6 @@ export const rapServ = {
   getThongTinCumRap: (maHeThongRap) => {
     return https.get(`/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${maHeThongRap}`);
   },  
-};
   getLichChieuPhim: (maPhim) => {
     return https.get(
       `https://movienew.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${maPhim}`
