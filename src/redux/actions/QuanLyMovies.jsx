@@ -18,10 +18,11 @@ export const addNewMovieAction = (formData) => {
   return async (dispatch) => {
     try {
       const result = await movieServ.addNewMovie(formData);
-      alert("thêm thành công");
       console.log("result", result.data.content);
     } catch (errors) {
-      console.log(errors.response?.data);
+      // console.log(errors.response?.data);
+      alert("Có lỗi xảy ra");
+      
     }
   };
 };
@@ -42,11 +43,11 @@ export const updateMovieAction = (formData) => {
   return async (dispatch) => {
     try {
       const result = await movieServ.updateMovie(formData);
-      alert("cập nhật thành công");
       // dispatch(renderTableMovies())
       console.log("result", result.data.content);
     } catch (errors) {
       console.log(errors.response?.data);
+      alert("Có lỗi gì đó xảy ra");
     }
   };
 };

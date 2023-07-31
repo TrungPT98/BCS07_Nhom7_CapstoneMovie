@@ -13,15 +13,7 @@ import Lottie from "react-lottie";
 import adminAnimation from "../assets/animations/adminAnimation.json";
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
-  // lottie
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: adminAnimation,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -75,9 +67,7 @@ const AdminTemplate = () => {
           }}
         >
           <Outlet />
-          <div>
-            <Lottie options={defaultOptions} height={460}  />
-          </div>
+         
         </Content>
       </Layout>
     </Layout>

@@ -40,7 +40,7 @@ const FormLogin = () => {
 
             //   set thời gian để thông báo message
             setTimeout(() => {
-              navigate("/admin");
+              navigate("/admin/user");
             }, 2000);
           } else {
             messageApi.success("Đăng nhập thành công.");
@@ -116,7 +116,7 @@ const FormLogin = () => {
             </div>
           </div> */}
         </div>
-        <div className="mt-10 px-12 sm:px-24 md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
+        <div className="mt-10 px-12 sm:h-screen md:px-48 lg:px-12 lg:mt-16 xl:px-24 xl:max-w-2xl">
           <h2 className="text-center text-3xl text-indigo-900 font-display font-semibold lg:text-left xl:text-5xl xl:text-bold">
             Đăng nhập vào hệ thống
           </h2>
