@@ -2,9 +2,15 @@ import { Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import { rapServ } from "../../services/rapServices";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 
 const TabMovieItem = ({ maHeThongRap }) => {
   const [lichChieu, setLichChieu] = useState([]);
+  const navigate = useNavigate();
+  const handleMovieItemClick = (movieId) => {
+    navigate(`/booking/${movieId}`);
+  };
+
   useEffect(() => {
     rapServ
       .getAllLichChieuHeThong(maHeThongRap)
@@ -49,6 +55,7 @@ const TabMovieItem = ({ maHeThongRap }) => {
                           .map((suatChieu, index) => {
                             return (
                               <a
+                              onClick={() => handleMovieItemClick(suatChieu.maLichChieu)}
                                 key={index}
                                 className="border rounded-md md:py-2 md:px-4 md:text-sm xsm:text-xs xsm:px-0 xsm:py-1 shadow-md text-base hover:bg-red-400 hover:text-white"
                               >

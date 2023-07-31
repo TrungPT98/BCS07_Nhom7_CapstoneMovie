@@ -1,0 +1,112 @@
+.movie-card {
+  margin-top: 90px;
+
+  .ant-card-body {
+    padding: 16px;
+
+    .movie-details {
+      p {
+        margin: 0;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      p + p {
+        margin-top: 8px;
+      }
+    }
+  }
+}
+
+.seat-div {
+  margin-top: 90px;
+
+  .seat-grid-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .seat-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 800px;
+    /* Adjust the width as per your requirement */
+    margin: auto;
+    /* Center the grid */
+  }
+
+  .seat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .seat.selected {
+    background-color: #4caf50 !important;
+    /* Green background when selected */
+    color: #fff;
+  }
+
+  .seat.occupied {
+    background-color: #dc3545;
+    color: #fff;
+    cursor: not-allowed;
+    /* Disable cursor for occupied seats */
+  }
+
+  .seat.vip {
+    background-color: #dc3545;
+    /* Red background for VIP seats */
+  }
+
+  .seat:hover {
+    background-color: #e0e0e0;
+  }
+}
+
+.seat-legend {
+  margin-top: 30px;
+  text-align: center;
+  align-items: center;
+}
+
+.legend-item {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.legend-item .seat {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background-color: #f0f0f0;
+  border: 1px solid black;
+
+}
+
+.legend-item .occupied {
+  background-color: #dc3545;
+  border: 1px solid black;
+}
+
+.legend-item .vip {
+  background-color: #f0ad4e;
+  border: 1px solid black;
+}
+
+.legend-item .selected {
+  background-color: #4caf50;
+  border: 1px solid black;
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import { Button, Progress, Tabs } from "antd";
 import { rapServ } from "../../services/rapServices";
@@ -7,13 +7,17 @@ import { rapServ } from "../../services/rapServices";
 const MovieDetail = () => {
   const { id } = useParams();
 
+  const navigate = useNavigate();
+  const handleMovieItemClick = (movieId) => {
+    navigate(`/booking/${movieId}`);
+  };
   const [movieDetail, setMovieDetail] = useState([]);
 
   useEffect(() => {
     rapServ
       .getLichChieuPhim(id)
       .then((res) => {
-        // console.log(res.data.content);
+        console.log(res.data.content);
         setMovieDetail(res.data.content);
       })
       .catch((err) => {
@@ -37,24 +41,31 @@ const MovieDetail = () => {
             {htr.cumRapChieu.map((cumRap, index) => {
               return (
                 <div key={index} className="mb-4">
-                  <h2 className="text-green-900 font-bold text-xl">{cumRap.tenCumRap}</h2>
+                  <h2 className="text-green-900 font-bold text-xl">
+                    {cumRap.tenCumRap}
+                  </h2>
                   <div className="grid grid-cols-2 gap-2">
-                  {cumRap.lichChieuPhim.map((lichChieu, index) => {
-                    return (
-                      <div key={index}>
-                        <div className="md:w-1/2 xsm:w-full">
-                        <h3 className="py-1 px-3 bg-orange-700 my-1 w-1/2 text-center text-base text-white rounded-xl mb-3">{lichChieu.tenRap}</h3>
-                        <a className="border rounded-md md:py-2 md:px-4 md:text-sm xsm:text-xs xsm:px-0 xsm:py-1 shadow-md text-base hover:bg-red-400 hover:text-white">
-                          {moment(lichChieu.ngayChieuGioChieu).format(
-                            "DD/MM/YYYY ~ h:mm"
-                          )}
-                        </a>
-
+                    {cumRap.lichChieuPhim.map((lichChieu, index) => {
+                      return (
+                        <div key={index}>
+                          <div className="md:w-1/2 xsm:w-full">
+                            <h3 className="py-1 px-3 bg-orange-700 my-1 w-1/2 text-center text-base text-white rounded-xl mb-3">
+                              {lichChieu.tenRap}
+                            </h3>
+                            <a
+                              onClick={() =>
+                                handleMovieItemClick(lichChieu.maLichChieu)
+                              }
+                              className="border rounded-md md:py-2 md:px-4 md:text-sm xsm:text-xs xsm:px-0 xsm:py-1 shadow-md text-base hover:bg-red-400 hover:text-white"
+                            >
+                              {moment(lichChieu.ngayChieuGioChieu).format(
+                                "DD/MM/YYYY ~ h:mm"
+                              )}
+                            </a>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-
+                      );
+                    })}
                   </div>
                 </div>
               );
@@ -78,7 +89,9 @@ const MovieDetail = () => {
             <h2 className="text-3xl font-bold mb-2 text-sky-100">
               {movieDetail.tenPhim}
             </h2>
-            <p className="mb-4 text-sky-100 text-xl py-6">Mô tả: {movieDetail.moTa}</p>
+            <p className="mb-4 text-sky-100 text-xl py-6">
+              Mô tả: {movieDetail.moTa}
+            </p>
             <div className="items-center text-sky-100 flex justify-between">
               <div className="text-base mr-2 bg-violet-600 px-4 py-2 rounded-xl">
                 Ngày phát hành:{" "}
@@ -108,10 +121,16 @@ const MovieDetail = () => {
         </div>
         <div className="my-3">
           {movieDetail.heThongRapChieu?.length == 0 ? (
-            <p className="text-gray-900 text-center font-bold text-2xl my-5"><i class="fa-solid fa-face-sad-cry"></i> Bùn quá, Phim hết chiều rùi...</p>
+            <p className="text-gray-900 text-center font-bold text-2xl my-5">
+              <i class="fa-solid fa-face-sad-cry"></i> Bùn quá, Phim hết chiều
+              rùi...
+            </p>
           ) : (
-            <Tabs tabPosition="left" items={renderItemTab()} className="bg-white py-3 border-transparent shadow-xl"/>
-
+            <Tabs
+              tabPosition="left"
+              items={renderItemTab()}
+              className="bg-white py-3 border-transparent shadow-xl"
+            />
           )}
         </div>
       </div>
