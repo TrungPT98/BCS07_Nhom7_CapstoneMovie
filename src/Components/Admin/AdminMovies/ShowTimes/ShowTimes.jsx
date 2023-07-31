@@ -1,12 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
-  Button,
-  Checkbox,
   Form,
-  Input,
-  Cascader,
   DatePicker,
-  Space,
   InputNumber,
   Select,
 } from "antd";
@@ -16,10 +11,10 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import { veServ } from "../../../../services/veService";
 const onFinish = (values) => {
-  console.log("Success:", values);
+  // console.log("Success:", values);
 };
 const onFinishFailed = (errorInfo) => {
-  console.log("Failed:", errorInfo);
+  // console.log("Failed:", errorInfo);
 };
 const ShowTimes = () => {
   const { id } = useParams();
@@ -46,15 +41,15 @@ const ShowTimes = () => {
     cumRapChieu: [],
   });
   console.log(state.heThongRapChieu);
-  useEffect(async () => {
-    try {
-      let res = await rapServ.getAllHeThongRap();
-      console.log(res);
+  useEffect( () => {
+    rapServ.getAllHeThongRap().then((res)=>{
       setState({
         ...state,
-        heThongRapChieu: res.data.content,
-      });
-    } catch (err) {}
+        heThongRapChieu: res.data.content
+      })
+    }).catch((err)=>{
+      console.log(err)
+    })
   }, []);
 
   // cascader

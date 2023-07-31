@@ -108,7 +108,7 @@ const TableUser = () => {
             Xoá
           </button>
 
-          <NavLink key={2} to={`/admin/edit/${record.taiKhoan}`}   className="py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-400 duration-300 hover:text-white">
+          <NavLink key={2} to={`/admin/update/${record.taiKhoan}`}   className="py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-400 duration-300 hover:text-white">
             Sửa
           </NavLink>
         </Space>

@@ -9,8 +9,19 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { NavLink, Outlet } from "react-router-dom";
+import Lottie from "react-lottie";
+import adminAnimation from "../assets/animations/adminAnimation.json";
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
+  // lottie
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: adminAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
@@ -27,22 +38,13 @@ const AdminTemplate = () => {
             {
               key: "1",
               icon: <UserOutlined />,
-              label: <NavLink to="/admin/user">
-                User
-              </NavLink>,
-              
+              label: <NavLink to="/admin/user">User</NavLink>,
             },
             {
               key: "2",
               icon: <VideoCameraOutlined />,
-              label: <NavLink to="/admin/movies">Moives</NavLink>
+              label: <NavLink to="/admin/movies">Moives</NavLink>,
             },
-            {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: <NavLink to="">Showtime</NavLink>,
-            },
-              
           ]}
         />
       </Sider>
@@ -73,6 +75,9 @@ const AdminTemplate = () => {
           }}
         >
           <Outlet />
+          <div>
+            <Lottie options={defaultOptions} height={460}  />
+          </div>
         </Content>
       </Layout>
     </Layout>
