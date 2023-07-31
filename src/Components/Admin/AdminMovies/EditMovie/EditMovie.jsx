@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { DatePicker, Form, Input, InputNumber, Radio, Switch } from "antd";
+import { DatePicker, Form, Input, InputNumber, Radio, Switch, message } from "antd";
 import moment from "moment/moment";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,7 +11,14 @@ import {
 import { useNavigate, useParams, useHistory } from "react-router-dom";
 
 const EditMovie = () => {
-  // useNavigate
+  // import message antdesgin
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
 
   // useDispatch
   const dispatch = useDispatch();
@@ -32,6 +39,7 @@ const EditMovie = () => {
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
+      maNhom: "GP10",
       maPhim: infoMovie.maPhim,
       tenPhim: infoMovie?.tenPhim,
       trailer: infoMovie?.trailer,
@@ -58,6 +66,7 @@ const EditMovie = () => {
       }
       //   cập nhật dữ liệu api
       dispatch(updateMovieAction(formData));
+      messageApi.success('Cập nhật thành công')
     },
     validationSchema: yup.object({
       tenPhim: yup
@@ -130,6 +139,7 @@ const EditMovie = () => {
 
   return (
     <>
+      {contextHolder}
       <Form
         onSubmitCapture={handleSubmit}
         labelCol={{

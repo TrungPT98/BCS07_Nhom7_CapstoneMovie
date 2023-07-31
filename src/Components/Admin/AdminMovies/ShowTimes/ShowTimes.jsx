@@ -10,6 +10,7 @@ import { useFormik } from "formik";
 import { useParams } from "react-router-dom";
 import moment from "moment";
 import { veServ } from "../../../../services/veService";
+import {message} from 'antd'
 const onFinish = (values) => {
   // console.log("Success:", values);
 };
@@ -17,6 +18,16 @@ const onFinishFailed = (errorInfo) => {
   // console.log("Failed:", errorInfo);
 };
 const ShowTimes = () => {
+
+   // import message antdesgin
+   const [messageApi, contextHolder] = message.useMessage();
+   const success = () => {
+     messageApi.open({
+       type: "success",
+       content: "This is a success message",
+     });
+   };
+
   const { id } = useParams();
   const formik = useFormik({
     initialValues: {
@@ -29,7 +40,7 @@ const ShowTimes = () => {
       //   console.log(values);
         try{
             const res = await veServ.taoLichChieu(values)
-            alert('tạo thành công', res.data.content)
+            messageApi.success('Tạo lịch chiếu thành công')
         }catch(err){
             console.log(err.response?.data)
         }
@@ -101,6 +112,8 @@ const ShowTimes = () => {
     setFieldValue,
   } = formik;
   return (
+   <>
+   {contextHolder}
     <Form
       onSubmitCapture={handleSubmit}
       name="basic"
@@ -162,11 +175,12 @@ const ShowTimes = () => {
       </Form.Item>
 
       <Form.Item label="Chức năng">
-        <button type="submit" className="bg-blue-600">
+        <button type="submit" className="text-white bg-blue-700  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-2 py-1 text-center hover:bg-blue-800">
           Tạo lịch chiếu
         </button>
       </Form.Item>
     </Form>
+   </>
   );
 };
 

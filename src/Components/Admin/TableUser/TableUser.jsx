@@ -1,46 +1,56 @@
 import React, { useState } from "react";
 // import ant design
-import { Space, Table, Tag, Button, Modal, message } from "antd";
+import { Space, Table, Tag, Button, Popconfirm, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { ExclamationCircleFilled } from "@ant-design/icons";
 import { nguoiDungServ } from "../../../services/nguoiDungService";
 import { getAllUserThunk } from "../../../redux/slices/nguoiDungSlice";
 import { NavLink } from "react-router-dom";
-const { confirm } = Modal;
-// const showConfirm = () => {
-//   confirm({
-//     title: "Do you Want to delete these items?",
-//     icon: <ExclamationCircleFilled />,
-//     content: "Some descriptions",
-//     onOk() {
-//       console.log("OK");
-//     },
-//     onCancel() {
-//       console.log("Cancel");
-//     },
-//   });
-// };
+// confirm antdesign
+const confirm = (e) => {
+  // console.log(e);
+  message.success("Click on Yes");
+};
+const cancel = (e) => {
+  // console.log(e);
+  message.error("Click on No");
+};
 const TableUser = () => {
   // message antdesign
   const [messageApi, contextHolder] = message.useMessage();
   const success = () => {
     messageApi.open({
-      type: 'success',
-      content: 'This is a success message',
+      type: "success",
+      content: "This is a success message",
     });
   };
   const error = () => {
     messageApi.open({
-      type: 'error',
-      content: 'This is an error message',
+      type: "error",
+      content: "This is an error message",
     });
-  };  
-
+  };
 
   const dispatch = useDispatch();
   // lấy dữ liệu từ store
   const { users } = useSelector((state) => state.nguoiDung);
   //   console.log(users);
+
+  // handleDelete
+  const handleDelete = (record) => {
+    nguoiDungServ
+      .deleteUser(record.taiKhoan)
+      .then((res) => {
+        // console.log(res)
+        success();
+        dispatch(getAllUserThunk());
+      })
+      .catch((err) => {
+        // console.log(err);
+        error();
+      });
+  };
+
   const columns = [
     {
       title: "ID",
@@ -87,28 +97,31 @@ const TableUser = () => {
     {
       title: "Action",
       key: "action",
-      render: (text, record,index) => (
+      render: (text, record, index) => (
         <Space size="middle">
-          <button
-            onClick={() => {
-              nguoiDungServ
-                .deleteUser(record.taiKhoan)
-                .then((res) => {
-                  // console.log(res)
-                  success()
-                  dispatch(getAllUserThunk())
-                })
-                .catch((err) => {
-                  // console.log(err);
-                  error()
-                });
+          <Popconfirm
+            title="Delete the task"
+            description="Are you sure to delete this task?"
+            onConfirm={()=>{
+              handleDelete(record)
             }}
-            className="py-2 px-5 bg-red-600 text-white rounded-lg hover:bg-red-400 duration-300"
+            onCancel={cancel}
+            okText="Yes"
+            cancelText="No"
+            okButtonProps= {{
+              className: 'bg-blue-600'
+            }}
+            
           >
-            Xoá
-          </button>
-
-          <NavLink key={2} to={`/admin/update/${record.taiKhoan}`}   className="py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-400 duration-300 hover:text-white">
+            <NavLink className="py-2 px-5 bg-red-600 text-white rounded-lg hover:bg-red-400 duration-300 hover:text-white">
+              Xoá
+            </NavLink>
+          </Popconfirm>
+          <NavLink
+            key={2}
+            to={`/admin/update/${record.taiKhoan}`}
+            className="py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-400 duration-300 hover:text-white"
+          >
             Sửa
           </NavLink>
         </Space>
@@ -147,11 +160,11 @@ const TableUser = () => {
 
   return (
     <>
-    {contextHolder}
-    <div className="container">
-      <h3 className="mb-8 text-3xl">Quản lý người dùng</h3>
-      <Table columns={columns} dataSource={newUser} />
-    </div>
+      {contextHolder}
+      <div className="container">
+        <h3 className="mb-8 text-3xl">Quản lý người dùng</h3>
+        <Table columns={columns} dataSource={newUser} />
+      </div>
     </>
   );
 };

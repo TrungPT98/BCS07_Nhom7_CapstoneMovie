@@ -19,7 +19,6 @@ export const updateInfoUserAction = (formData) =>{
         try{
             const result = await nguoiDungServ.updateInfoUser(formData)
             console.log(result.data.content)
-            alert('asdas')
         }catch(err){
             console.log(err.response?.data)
 

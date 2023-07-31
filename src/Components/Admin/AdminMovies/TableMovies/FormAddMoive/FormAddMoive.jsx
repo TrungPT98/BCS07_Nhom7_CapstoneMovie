@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
-
 import {
   Button,
   Cascader,
@@ -13,11 +12,21 @@ import {
   Select,
   Switch,
   TreeSelect,
+  message,
 } from "antd";
 import moment from "moment/moment";
 import { useDispatch } from "react-redux";
 import { addNewMovieAction } from "../../../../../redux/actions/QuanLyMovies";
 const FormAddMoive = () => {
+  // import message antdesgin
+  const [messageApi, contextHolder] = message.useMessage();
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "This is a success message",
+    });
+  };
+
   // useDispatch
   const dispatch = useDispatch();
   const [componentSize, setComponentSize] = useState("default");
@@ -26,18 +35,19 @@ const FormAddMoive = () => {
   };
   const formik = useFormik({
     initialValues: {
-      maNhom: 'GP10',
+      maNhom: "GP10",
       tenPhim: "",
       trailer: "",
       moTa: "",
-      ngayKhoiChieu: "",
+      ngayKhoiChieu: moment(),
       sapChieu: false,
       dangChieu: false,
       hot: false,
-      danhGia: 10,
-      hinhAnh: {},
+      danhGia: 2,
+      hinhAnh: null,
     },
-    onSubmit: (values) => {
+    onSubmit: async (values, { resetForm }) => {
+      
       //   console.log(values);
       // tạo formData theo yêu cầu api
       let formData = new FormData();
@@ -48,9 +58,19 @@ const FormAddMoive = () => {
           formData.append("File", values.hinhAnh, values.hinhAnh.name);
         }
       }
-      //   gửi dữ liệu api
-      dispatch(addNewMovieAction(formData));
-      formik.resetForm()
+      try {
+        //   gửi dữ liệu api
+        await dispatch(addNewMovieAction(formData));
+        messageApi.success("Thêm phim thành công");
+
+        resetForm({
+          ...formik.initialValues,
+          ngayKhoiChieu: moment(),
+          hinhAnh: null,
+        });
+      } catch (err) {
+        messageApi.error("Đã xảy ra lỗi khi thêm phim");
+      }
     },
     validationSchema: yup.object({
       tenPhim: yup
@@ -122,6 +142,7 @@ const FormAddMoive = () => {
   };
   return (
     <>
+      {contextHolder}
       <Form
         onSubmitCapture={handleSubmit}
         labelCol={{
@@ -149,7 +170,12 @@ const FormAddMoive = () => {
           </Radio.Group>
         </Form.Item>
         <Form.Item label="Tên phim">
-          <Input onChange={handleChange} onBlur={handleBlur} name="tenPhim" />
+          <Input
+            value={values.tenPhim}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            name="tenPhim"
+          />
           {errors.tenPhim && touched.tenPhim ? (
             <p className="text-red-700">{errors.tenPhim}</p>
           ) : (
@@ -157,7 +183,12 @@ const FormAddMoive = () => {
           )}
         </Form.Item>
         <Form.Item label="Trailer">
-          <Input onChange={handleChange} onBlur={handleBlur} name="trailer" />
+          <Input
+            value={values.trailer}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            name="trailer"
+          />
           {errors.trailer && touched.trailer ? (
             <p className="text-red-700">{errors.trailer}</p>
           ) : (
@@ -165,7 +196,12 @@ const FormAddMoive = () => {
           )}
         </Form.Item>
         <Form.Item label="Mô tả">
-          <Input onChange={handleChange} onBlur={handleBlur} name="moTa" />
+          <Input
+            value={values.moTa}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            name="moTa"
+          />
           {errors.moTa && touched.moTa ? (
             <p className="text-red-700">{errors.moTa}</p>
           ) : (
@@ -173,7 +209,10 @@ const FormAddMoive = () => {
           )}
         </Form.Item>
         <Form.Item label="Ngày chiếu">
-          <DatePicker format={"DD/MM/YYYY"} onChange={handleChangeDatePicker} />
+          <DatePicker
+            format={"DD/MM/YYYY"}
+            onChange={handleChangeDatePicker}
+          />
           {errors.ngayKhoiChieu && touched.ngayKhoiChieu ? (
             <p className="text-red-700">{errors.ngayKhoiChieu}</p>
           ) : (
@@ -181,16 +220,29 @@ const FormAddMoive = () => {
           )}
         </Form.Item>
         <Form.Item label="Sắp chiếu" valuePropName="checked">
-          <Switch name="sapChieu" onChange={handleChangeSwitch("sapChieu")} />
+          <Switch
+            checked={values.sapChieu}
+            name="sapChieu"
+            onChange={handleChangeSwitch("sapChieu")}
+          />
         </Form.Item>
         <Form.Item label="Đang chiếu" valuePropName="checked">
-          <Switch name="dangChieu" onChange={handleChangeSwitch("dangChieu")} />
+          <Switch
+            checked={values.dangChieu}
+            name="dangChieu"
+            onChange={handleChangeSwitch("dangChieu")}
+          />
         </Form.Item>
         <Form.Item label="Hot" valuePropName="checked">
-          <Switch name="hot" onChange={handleChangeSwitch("hot")} />
+          <Switch
+            checked={values.hot}
+            name="hot"
+            onChange={handleChangeSwitch("hot")}
+          />
         </Form.Item>
         <Form.Item label="Đánh giá">
           <InputNumber
+            value={values.danhGia}
             min={1}
             max={10}
             onChange={handleChangeInputNumber("danhGia")}
