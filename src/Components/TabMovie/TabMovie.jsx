@@ -34,7 +34,7 @@ const TabMovie = () => {
     });
   };
   return (
-    <div className="bg-gradient-to-r from-cyan-500 to-blue-800 py-10">
+    <div className="bg-gradient-to-r from-cyan-500 to-blue-800 py-10" id="cumRap">
     <div className="max-w-screen-xl mx-auto">
       <Tabs tabPosition="left" items={renderItemTab()} className="bg-white"/>
     </div>

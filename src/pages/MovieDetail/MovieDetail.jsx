@@ -114,12 +114,12 @@ const MovieDetail = () => {
                 />
               </div>
             </div>
-            <Button className="text-lg h-10" type="primary" danger>
+            <Button className="text-lg h-10" type="primary" danger href="#lich">
               Đặt vé ngay
             </Button>
           </div>
         </div>
-        <div className="my-3">
+        <div className="my-3" id="lich">
           {movieDetail.heThongRapChieu?.length == 0 ? (
             <p className="text-gray-900 text-center font-bold text-2xl my-5">
               <i class="fa-solid fa-face-sad-cry"></i> Bùn quá, Phim hết chiều

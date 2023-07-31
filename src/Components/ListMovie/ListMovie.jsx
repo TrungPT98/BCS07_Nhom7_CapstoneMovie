@@ -26,7 +26,7 @@ const ListMovie = () => {
   }, []);
 
   return (
-    <div className="bg-gradient-to-r from-cyan-500 to-blue-800">
+    <div className="bg-gradient-to-r from-cyan-500 to-blue-800" id="lichChieu">
     <div className="max-w-screen-xl mx-auto py-10">
       <h2 className="text-3xl text-white font-bold">Danh sách phim</h2>
       <div className="grid md:grid-cols-4 md:gap-5 xsm:grid-cols-2 xsm:gap-2">
