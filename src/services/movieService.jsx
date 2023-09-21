@@ -7,10 +7,10 @@ export const movieServ = {
   getAllMovie: (tenPhim = '') => {
     if(tenPhim != '') {
       // tên phim != '' sẽ goi api này
-      return https.get(`https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP10&tenPhim=${tenPhim}`)
+      return https.get(`https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01&tenPhim=${tenPhim}`)
     }else{
       // tên phim = '' sẽ goi api này
-      return https.get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP10");
+      return https.get("/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01");
     }
   },
   addNewMovie: (formData) => {
