@@ -2,6 +2,7 @@ import { Tabs } from "antd";
 import React, { useEffect, useState } from "react";
 import { rapServ } from "../../services/rapServices";
 import TabMovieItem from "./TabMovieItem";
+import './TabMovie.scss'
 
 const TabMovie = () => {
   const [heThongRap, setHeThongRap] = useState([]);
@@ -22,11 +23,14 @@ const TabMovie = () => {
     return heThongRap.map((item, index) => {
       return {
         label: (
-          <img
-            src={item.logo}
-            className="md:w-11 md:h-11 xsm:w-8 xsm:h-w-8"
-            alt=""
-          />
+          <div className="lg:w-12 lg:h-12 md:w-8 md:h-8 xsm:w-6 xsm:h-6">
+            <img
+              src={item.logo}
+              className="w-full h-full"
+              alt=""
+            />
+
+          </div>
         ),
         key: index,
         children: <TabMovieItem maHeThongRap={item.maHeThongRap} />,

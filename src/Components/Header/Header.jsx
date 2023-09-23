@@ -22,29 +22,29 @@ const Header = () => {
             className="h-8 mr-3"
             alt="Flowbite Logo"
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-white">
+          <span className="self-center md:text-2xl xsm:text-xl font-semibold whitespace-nowrap text-white dark:text-white">
             Cyber Movie
           </span>
         </NavLink>
         <div className="flex md:order-2">
           <div className="md:mt-0 xsm:mt-2">
             {name != null ? (
-              <p className="text-white mr-2">Hello, {name.hoTen}</p>
+              <p className="text-white md:mr-2 xsm:mr-1">Hello, {name.hoTen}</p>
             ) : (
               <>
                 <NavLink
                   to="/login"
-                  className="text-white md:text-xl xsm:text-base hover:text-blue-900 mr-3"
+                  className="text-white lg:text-xl md:text-sm xsm:text-xs hover:text-blue-900 md:mr-2 xsm:mr-1"
                 >
-                  <i className="fa-solid fa-circle-user mr-2 md:inline xsm:hidden"></i>
+                  <i className="fa-solid fa-circle-user mr-2 lg:inline md:hidden xsm:hidden"></i>
                   Đăng nhập
                 </NavLink>
 
                 <NavLink
                   to="/register"
-                  className="text-white md:text-xl xsm:text-base hover:text-blue-900"
+                  className="text-white lg:text-xl md:text-sm xsm:text-xs hover:text-blue-900"
                 >
-                  <i className="fa-solid fa-right-to-bracket mr-2 md:inline xsm:hidden"></i>
+                  <i className="fa-solid fa-right-to-bracket mr-2 lg:inline md:hidden xsm:hidden"></i>
                   Đăng ký
                 </NavLink>
               </>
@@ -79,11 +79,11 @@ const Header = () => {
                 showNavLinks ? "active" : ""
               }`}
             >
-              <ul className="flex flex-col p-4 md:p-0 font-medium border border-gray-100 rounded-b-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              <ul className="flex flex-col lg:p-4 md:p-0 font-medium border border-gray-100 rounded-b-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 lg:pl-3 lg:pr-4 md:pl-1 md:pr-1 text-gray-900 rounded hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Lịch chiếu
                   </a>
@@ -91,7 +91,7 @@ const Header = () => {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 lg:pl-3 lg:pr-4 md:pl-1 md:pr-1 text-gray-900 rounded hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Cụm rạp
                   </a>
@@ -99,7 +99,7 @@ const Header = () => {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 lg:pl-3 lg:pr-4 md:pl-1 md:pr-1 text-gray-900 rounded hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Tin tức
                   </a>
@@ -107,7 +107,7 @@ const Header = () => {
                 <li>
                   <a
                     href="#"
-                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block py-2 lg:pl-3 lg:pr-4 md:pl-1 md:pr-1 text-gray-900 rounded hover:bg-blue-500 hover:text-white dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Ứng dụng
                   </a>
